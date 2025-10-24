@@ -101,5 +101,38 @@ async function updateExercise(exerciseName, newExerciseName){
     ); 
 }
 
+//DELETE query functions (DELETE)
+
+async function deleteMuscle(muscleName){
+    const { rowCount } = await pool.query(
+        "DELETE FROM muscles WHERE muscle_name = $1",
+        [muscleName]
+    )
+
+    return rowCount > 0;
+}
+
+async function deleteExercise(exerciseName){
+    const { rowCount } = await pool.query(
+        "DELETE from exercises WHERE exercise_name = $1",
+        [exerciseName]
+    )
+
+    return rowCount > 0;
+}
+
+async function clearMuscles(){
+    await pool.query("TRUNCATE TABLE muscles")
+}
+
+async function clearExercises(){
+    await pool.query("TRUNCATE TABLE exercises")
+}
+
+async function clearAllTables(){
+    await clearMuscles();
+    await clearExercises();
+}
+
 
 
