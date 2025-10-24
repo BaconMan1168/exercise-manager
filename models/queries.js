@@ -29,6 +29,10 @@ async function addExerciseMusclePair(exerciseName, muscleNames){
             [muscleName]
         );
 
+        if (muscleRows.length === 0) {
+            throw new Error(`Muscle '${muscleName}' not found.`);
+        }
+
         const muscleId = muscleRows[0].id;
 
         await pool.query(
@@ -72,7 +76,7 @@ async function searchMusclesByName(searchPhrase){
 }
 
 async function searchExercisesByName(searchPhrase){
-    const { rows } = await pool.query("SELECT exercise_name FROM muscles WHERE exercise_name ILIKE $1 ", ['%' + searchPhrase + '%'])
+    const { rows } = await pool.query("SELECT exercise_name FROM exercises WHERE exercise_name ILIKE $1 ", ['%' + searchPhrase + '%'])
     return rows;
 }
 
@@ -95,7 +99,7 @@ async function searchExercisesByMuscle(searchPhrase){
         FROM exercise_muscle_group emg
         INNER JOIN muscles m ON emg.muscle_id = m.id
         INNER JOIN exercises e ON emg.exercise_id = e.id 
-        WHERE m.muscle_name ILIKE $1
+        WHERE m.muscle_group_name ILIKE $1
     `, ['%' + searchPhrase + '%'])
     return rows;
 }
@@ -139,7 +143,7 @@ async function updateExercise(exerciseName, newExerciseName){
 
 async function deleteMuscle(muscleName){
     const { rowCount } = await pool.query(
-        "DELETE FROM muscles WHERE muscle_name = $1",
+        "DELETE FROM muscles WHERE muscle_group_name = $1",
         [muscleName]
     )
 
