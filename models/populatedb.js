@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS exercise_muscle_group (
     FOREIGN KEY (exercise_id) REFERENCES exercises(id) ON DELETE CASCADE,
     FOREIGN KEY (muscle_id) REFERENCES muscles(id) ON DELETE CASCADE
 );
+
+
 `;
 
 const populateTables = `
