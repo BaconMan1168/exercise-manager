@@ -1,5 +1,7 @@
 const pool = require("./pool");
 
+
+//GET query functions
 async function getAllMuscles(){
     const { rows } = await pool.query(`SELECT muscle_group_name AS "Muscle Name" FROM muscles;`);
     return rows;
@@ -25,3 +27,8 @@ async function getAllExerciseMuscles(){
     return rows;
 }
 
+//POST query functions
+
+async function addMuscle(muscleName){
+    await pool.query("INSERT INTO muscles (muscle_group_name) VALUES ($1)", [muscleName]);
+}
