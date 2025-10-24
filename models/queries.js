@@ -32,3 +32,7 @@ async function getAllExerciseMuscles(){
 async function addMuscle(muscleName){
     await pool.query("INSERT INTO muscles (muscle_group_name) VALUES ($1)", [muscleName]);
 }
+
+async function addExercise(exerciseName){
+    await pool.query("INSERT INTO exercises(exercise_name VALUES ($1)", [exerciseName]);
+}
