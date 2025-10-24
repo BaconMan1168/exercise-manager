@@ -66,6 +66,40 @@ async function getAllExerciseMusclePairs(){
     return rows;
 }
 
+async function searchMusclesByName(searchPhrase){
+    const { rows } = await pool.query("SELECT muscle_group_name FROM muscles WHERE muscle_group_name ILIKE $1", ['%' + searchPhrase + '%'])
+    return rows;
+}
+
+async function searchExercisesByName(searchPhrase){
+    const { rows } = await pool.query("SELECT exercise_name FROM muscles WHERE exercise_name ILIKE $1 ", ['%' + searchPhrase + '%'])
+    return rows;
+}
+
+async function searchMusclesByExercise(searchPhrase){
+    const { rows } = await pool.query(`
+        SELECT 
+            m.muscle_group_name AS "Muscles Trained"
+        FROM exercise_muscle_group emg
+        INNER JOIN muscles m ON emg.muscle_id = m.id
+        INNER JOIN exercises e ON emg.exercise_id = e.id 
+        WHERE e.exercise_name ILIKE $1
+    `, ['%' + searchPhrase + '%'])
+    return rows;
+}
+
+async function searchExercisesByMuscle(searchPhrase){
+    const { rows } = await pool.query(`
+        SELECT 
+            e.exercise_name AS "Exercises"
+        FROM exercise_muscle_group emg
+        INNER JOIN muscles m ON emg.muscle_id = m.id
+        INNER JOIN exercises e ON emg.exercise_id = e.id 
+        WHERE m.muscle_name ILIKE $1
+    `, ['%' + searchPhrase + '%'])
+    return rows;
+}
+
 //UPDATE query functions (PUT)
 
 async function updateMuscle(muscleName, newMuscleName){
@@ -134,5 +168,23 @@ async function clearAllTables(){
     await clearExercises();
 }
 
-
+module.exports = {
+    addMuscle,
+    addExercise,
+    addExerciseMusclePair,
+    getAllMuscles,
+    getAllExercises,
+    getAllExerciseMusclePairs,
+    searchMusclesByName,
+    searchExercisesByName,
+    searchMusclesByExercise,
+    searchExercisesByMuscle,
+    updateMuscle,
+    updateExercise,
+    deleteMuscle,
+    deleteExercise,
+    clearMuscles,
+    clearExercises,
+    clearAllTables
+}
 
