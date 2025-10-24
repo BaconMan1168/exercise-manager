@@ -12,6 +12,16 @@ async function getAllExercises(){
 
 async function getAllExerciseMuscles(){
     const SQL = `
-    SELECT exercise_name
+    SELECT 
+        e.exercise_name AS "Exercise Name",
+        STRING_AGG(m.muscle_group_name, ', ') AS "Trained Muscles"
+    FROM exercise_muscle_group emg
+    INNER JOIN muscles m ON emg.muscle_id = m.id
+    INNER JOIN exercises e ON emg.exercise_id = e.id
+    GROUP BY e.exercise_name;
     `
+
+    const { rows } = await pool.query(SQL);
+    return rows;
 }
+
