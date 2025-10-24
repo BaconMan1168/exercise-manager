@@ -1,7 +1,7 @@
 const pool = require("./pool");
 
 
-//CREATE query functions (POST)
+//CREATE query functions (POST) (USE ALL TOGETHER)
 
 async function addMuscle(muscleName){
     await pool.query("INSERT INTO muscles (muscle_group_name) VALUES ($1)", [muscleName]);
@@ -51,7 +51,7 @@ async function getAllExercises(){
     return rows;
 }
 
-async function getAllExerciseMuscles(){
+async function getAllExerciseMusclePairs(){
     const SQL = `
     SELECT 
         e.exercise_name AS "Exercise Name",
@@ -69,22 +69,37 @@ async function getAllExerciseMuscles(){
 //UPDATE query functions (PUT)
 
 async function updateMuscle(muscleName, newMuscleName){
-    const SQL = `
-        UPDATE muscles
-        SET muscle_name = ${newMuscleName}
-        WHERE muscle_name = ${muscleName};
-    `
+    const { rows: existing } = await pool.query(
+        "SELECT 1 FROM muscles WHERE muscle_group_name = $1",
+        [newMuscleName]
+    );
 
-    await pool.query(SQL);
+    if (existing.length > 0){
+        throw new Error(`Muscle name '${newMuscleName}' already exists.`);
+    }
+
+
+    await pool.query(
+        "UPDATE muscles SET muscle_group_name = $1 WHERE muscle_group_name = $2",
+        [newMuscleName, muscleName]
+    );
 }
 
 async function updateExercise(exerciseName, newExerciseName){
-    const SQL = `
-        UPDATE exercises
-        SET exercise_name = ${newExerciseName}
-        WHERE exercise_name = ${exercise_name};
-    `
+    const { rows: existing } = await pool.query(
+        "SELECT 1 FROM exercises WHERE exercise_name = $1",
+        [newExerciseName]
+    );
 
-    await pool.query(SQL);
+    if (existing.length > 0){
+        throw new Error(`Exercise name '${newExerciseName}' already exists.`);
+    }
+
+    await pool.query(
+        "UPDATE exercises SET exercise_name = $1 WHERE exercise_name = $2",
+        [newExerciseName, exerciseName]
+    ); 
 }
+
+
 

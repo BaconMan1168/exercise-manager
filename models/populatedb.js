@@ -3,12 +3,12 @@ const { Client } = require('pg');
 const createTables = `
 CREATE TABLE IF NOT EXISTS muscles (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    muscle_group_name TEXT NOT NULL
+    muscle_group_name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS exercises (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    exercise_name TEXT NOT NULL
+    exercise_name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS exercise_muscle_group (
