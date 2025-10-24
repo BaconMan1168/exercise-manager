@@ -8,9 +8,37 @@ async function addMuscle(muscleName){
 }
 
 async function addExercise(exerciseName){
-    await pool.query("INSERT INTO exercises(exercise_name VALUES ($1)", [exerciseName]);
+    await pool.query("INSERT INTO exercises(exercise_name) VALUES ($1)", [exerciseName]);
 }
 
+async function addExerciseMusclePair(exerciseName, muscleNames){
+    const { rows: exerciseRows } = await pool.query(
+        "SELECT id FROM exercises WHERE exercise_name = $1",
+        [exerciseName]
+    );
+
+    if (exerciseRows.length === 0) {
+        throw new Error(`Exercise '${exerciseName}' not found.`);
+    }
+
+    const exerciseId = exerciseRows[0].id;
+
+    for (const muscleName of muscleNames){
+        const { rows: muscleRows } = await pool.query(
+            "SELECT id FROM muscles WHERE muscle_group_name = $1",
+            [muscleName]
+        );
+
+        const muscleId = muscleRows[0].id;
+
+        await pool.query(
+            `INSERT INTO exercise_muscle_group (exercise_id, muscle_id)
+            VALUES ($1, $2)
+            ON CONFLICT (exercise_id, muscle_id) DO NOTHING;`,
+            [exerciseId, muscleId]
+        );
+    }
+}
 
 //READ query functions (GET)
 async function getAllMuscles(){
