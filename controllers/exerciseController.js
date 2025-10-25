@@ -28,3 +28,19 @@ async function changeExercise(req, res){
     await db.updateExercise(currName, newName);
     //render or redirect
 }
+
+async function removeExercise(req, res){
+    const { exerciseName } = req.body;
+    const isDeleted = await db.deleteExercise(exerciseName);
+
+    if (isDeleted){
+        //render something
+    }
+    else{
+        //render something else
+    }
+}
+
+async function emptyExercises(req, res){
+    await db.clearExercises();
+}

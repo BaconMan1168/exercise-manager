@@ -26,3 +26,19 @@ async function changeMuscle(req, res){
     await db.updateMuscle(currName, newName);
     //render or redirect
 }
+
+async function removeMuscle(req, res){
+    const { muscleName } = req.body;
+    const isDeleted = await db.deleteMuscle(muscleName);
+
+    if (isDeleted){
+        //render something
+    }
+    else{
+        //render something else
+    }
+}
+
+async function emptyMuscles(req, res){
+    await db.clearMuscles();
+}
