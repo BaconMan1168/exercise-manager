@@ -6,6 +6,33 @@
         <title>Home</title>
     </head>
     <body>
-        <%- include('navbar', {links: links}) %>
+        <div class="container">
+            <div class="navbar">
+                <%- include('navbar', {links: links}) %>
+            </div>
+
+            <div class="header">
+                <%- include('header') %>
+            </div>
+            
+
+            <main class="dashboard">
+                <div class="card">
+                    <h2>Total Muscles</h2>
+                    <p><%= musclesCount %></p>
+                </div>
+
+                <div class="card">
+                    <h2>Total Exercises</h2>
+                    <p><%= exercisesCount %></p>
+                </div>
+
+                <div class="card">
+                    <h2>Total Relations</h2>
+                    <p><%= pairsCount %></p>
+                </div>
+            </main>
+        </div>
+
     </body>
 </html>
