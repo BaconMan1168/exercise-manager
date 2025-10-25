@@ -10,3 +10,8 @@ async function readAllExerciseMusclePairs(req, res){
     const exerciseMusclePairs = await db.getAllExerciseMusclePairs();
     //render something with ejs
 }
+
+module.exports = {
+    createExerciseMusclePair,
+    readAllExerciseMusclePairs
+}
