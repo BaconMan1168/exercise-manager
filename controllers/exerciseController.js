@@ -44,3 +44,13 @@ async function removeExercise(req, res){
 async function emptyExercises(req, res){
     await db.clearExercises();
 }
+
+module.exports = {
+    createExercise,
+    readAllExercises,
+    readExercisesByName,
+    readExercisesByMuscle,
+    changeExercise,
+    removeExercise,
+    emptyExercises
+}

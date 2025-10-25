@@ -42,3 +42,13 @@ async function removeMuscle(req, res){
 async function emptyMuscles(req, res){
     await db.clearMuscles();
 }
+
+module.exports = {
+    createMuscle,
+    readAllMuscles,
+    readMusclesByName,
+    readMusclesByExercise,
+    changeMuscle,
+    removeMuscle,
+    emptyMuscles
+}
