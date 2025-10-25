@@ -23,3 +23,8 @@ async function readExercisesByMuscle(req, res){
     //render something with ejs
 }
 
+async function changeExercise(req, res){
+    const { currName, newName } = req.body;
+    await db.updateExercise(currName, newName);
+    //render or redirect
+}

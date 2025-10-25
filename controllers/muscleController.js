@@ -20,3 +20,9 @@ async function readMusclesByExercise(req, res){
     const { exercisePhrase } = req.body;
     const muscles = await db.searchMusclesByExercise(exercisePhrase);
 }
+
+async function changeMuscle(req, res){
+    const { currName, newName } = req.body;
+    await db.updateMuscle(currName, newName);
+    //render or redirect
+}
