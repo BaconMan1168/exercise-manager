@@ -5,3 +5,8 @@ async function createExerciseMusclePair(req, res){
     await db.addExerciseMusclePair(exerciseName, muscleName);
     res.redirect('/')
 }
+
+async function readAllExerciseMusclePairs(req, res){
+    const exerciseMusclePairs = await db.getAllExerciseMusclePairs();
+    //render something with ejs
+}
