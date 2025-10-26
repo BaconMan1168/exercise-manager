@@ -83,7 +83,7 @@ async function searchExercisesByName(searchPhrase){
 async function searchMusclesByExercise(searchPhrase){
     const { rows } = await pool.query(`
         SELECT 
-            m.muscle_group_name AS "Muscles Trained"
+            e.exercise_name AS "Exercise Name", m.muscle_group_name AS "Muscles Trained"
         FROM exercise_muscle_group emg
         INNER JOIN muscles m ON emg.muscle_id = m.id
         INNER JOIN exercises e ON emg.exercise_id = e.id 

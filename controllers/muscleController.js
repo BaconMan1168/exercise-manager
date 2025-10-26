@@ -13,14 +13,14 @@ async function createMuscle(req, res){
 
 async function readMusclesByName(req, res){
     const { musclePhrase } = req.query;
-    const muscles = await db.searchMusclesByName(musclePhrase)
-    //render something
+    const rows = await db.searchMusclesByName(musclePhrase)
+    res.render('search', { mode: 'byMuscleName', title: musclePhrase, rows: rows })
 }
 
 async function readMusclesByExercise(req, res){
     const { exercisePhrase } = req.body;
-    const muscles = await db.searchMusclesByExercise(exercisePhrase);
-    //render something
+    const rows = await db.searchMusclesByExercise(exercisePhrase);
+    res.render('search', { mode: 'byExercise', title: exercisePhrase, rows: rows })
 }
 
 async function changeMuscle(req, res){

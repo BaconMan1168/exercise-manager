@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Results</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar left-elements">
+                <%- include('navbar', { links: links }) %>
+            </div>
+
+            <div class="right-elements">
+                <div class="header">
+                    <%- include('header', { pageName: Home}) %>
+                </div>
+
+                <main class="muscle-search-main">
+                    <% if (mode === 'byMuscleName') { %>
+                        <h1>Muscles with "<%= title %>"</h1>
+                    <% } else if (mode === 'byExercise') { %>
+                        <h1>Muscles related to "<%= title %>"</h1>
+                    <% } %>
+
+                    <div style="max-height: 300px; overflow-y: auto;">
+                        <table cellpadding="5">
+                            <thead>
+                                <tr>
+                                    <% if (mode === 'byMuscleName') { %>
+                                        <th>Muscle Name</th>
+                                    <% } else if (mode === 'byExercise') { %>
+                                        <th>Exercise Name</th>
+                                        <th>Muscle Name</th>
+                                    <% } %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (rows.length === 0) { %>
+                                    <tr>
+                                        <td colspan="<%= mode === 'byMuscleName' ? 1 : 2 %>">No results found.</td>
+                                    </tr>
+                                <% } else { %>
+                                    <% rows.forEach(r => { %>
+                                        <tr>
+                                            <% if (mode === 'byMuscleName') { %>
+                                                <td><%= r.muscle_group_name %></td>
+                                            <% } else if (mode === 'byExercise') { %>
+                                                <td><%= r.exercise_name %></td>
+                                                <td><%= r.muscle_group_name %></td>
+                                            <% } %>
+                                        </tr>
+                                    <% }) %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
