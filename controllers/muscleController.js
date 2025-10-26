@@ -6,24 +6,21 @@ async function homeMusclePage(req, res){
 }
 
 async function createMuscle(req, res){
-    const { muscleName } = req.body;
+    const { muscleName } = req.query;
     await db.addMuscle(muscleName);
     res.redirect('/muscles')
 }
 
-async function readAllMuscles(req, res){
-    const muscles = await db.getAllMuscles();
-    return muscles;
-}
-
 async function readMusclesByName(req, res){
-    const { musclePhrase } = req.body;
+    const { musclePhrase } = req.query;
     const muscles = await db.searchMusclesByName(musclePhrase)
+    //render something
 }
 
 async function readMusclesByExercise(req, res){
     const { exercisePhrase } = req.body;
     const muscles = await db.searchMusclesByExercise(exercisePhrase);
+    //render something
 }
 
 async function changeMuscle(req, res){
@@ -51,7 +48,6 @@ async function emptyMuscles(req, res){
 module.exports = {
     homeMusclePage,
     createMuscle,
-    readAllMuscles,
     readMusclesByName,
     readMusclesByExercise,
     changeMuscle,

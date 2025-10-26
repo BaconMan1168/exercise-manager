@@ -12,13 +12,13 @@ async function readAllExercises(req, res){
 }
 
 async function readExercisesByName(req, res){
-    const { exercisePhrase } = req.body;
+    const { exercisePhrase } = req.query;
     const exercises = await db.searchExercisesByName(exercisePhrase);
     //render something with ejs
 }
 
 async function readExercisesByMuscle(req, res){
-    const { musclePhrase } = req.body;
+    const { musclePhrase } = req.query;
     const exercises = await db.searchExercisesByMuscle(musclePhrase);
     //render something with ejs
 }

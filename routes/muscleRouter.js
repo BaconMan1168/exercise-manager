@@ -3,6 +3,8 @@ const muscleController = require('../controllers/muscleController')
 
 const muscleRouter = Router();
 
-indexRouter.get('/', muscleController.homeMusclePage);
+muscleRouter.get('/', muscleController.homeMusclePage);
+
+muscleRouter.get('/search', muscleController.readMusclesByName);
 
 module.exports = muscleRouter;
