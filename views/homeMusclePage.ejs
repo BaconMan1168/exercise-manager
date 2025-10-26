@@ -16,19 +16,21 @@
                     <%- include('header', { pageName: Home}) %>
                 </div>
 
-                <main class="index-main">
-                    <div class="card">
-                        <h2>Total Muscles</h2>
-                        <p><%= musclesCount %></p>
-                    </div>
-
-                    <div class="card">
-                        <h2>Total Exercises</h2>
-                        <p><%= exercisesCount %></p>
+                <main class="muscle-home-main">
+                    <div style="max-height: 300px; overflow-y: auto;">
+                        <table>
+                            <thead>
+                            <tr><th>Muscle Name</th></tr>
+                            </thead>
+                            <tbody>
+                            <% muscles.forEach(m => { %>
+                                <tr><td><%= m.muscle_group_name %></td></tr>
+                            <% }) %>
+                            </tbody>
+                        </table>
                     </div>
                 </main>
             </div>
         </div>
-
     </body>
 </html>

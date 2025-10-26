@@ -1,14 +1,19 @@
 const db = require('../models/queries')
 
+async function homeMusclePage(req, res){
+    const muscles = await db.getAllMuscles();
+    res.render('homeMusclePage', { muscles: muscles })
+}
+
 async function createMuscle(req, res){
     const { muscleName } = req.body;
     await db.addMuscle(muscleName);
-    res.redirect('/')
+    res.redirect('/muscles')
 }
 
 async function readAllMuscles(req, res){
-    const { muscles } = await db.getAllMuscles();
-    //render something with ejs
+    const muscles = await db.getAllMuscles();
+    return muscles;
 }
 
 async function readMusclesByName(req, res){
@@ -44,6 +49,7 @@ async function emptyMuscles(req, res){
 }
 
 module.exports = {
+    homeMusclePage,
     createMuscle,
     readAllMuscles,
     readMusclesByName,
