@@ -6,7 +6,7 @@ async function homeMusclePage(req, res){
 }
 
 async function createMuscle(req, res){
-    const { muscleName } = req.query;
+    const { muscleName } = req.body;
     await db.addMuscle(muscleName);
     res.redirect('/muscles')
 }
@@ -18,7 +18,7 @@ async function readMusclesByName(req, res){
 }
 
 async function readMusclesByExercise(req, res){
-    const { exercisePhrase } = req.body;
+    const { exercisePhrase } = req.query;
     const rows = await db.searchMusclesByExercise(exercisePhrase);
     res.render('search', { mode: 'byExercise', title: exercisePhrase, rows: rows })
 }
