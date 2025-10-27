@@ -17,9 +17,9 @@
                 </div>
 
                 <main class="muscle-search-main">
-                    <% if (mode === 'byMuscleName') { %>
+                    <% if (mode === 'muscle') { %>
                         <h1>Muscles with "<%= title %>"</h1>
-                    <% } else if (mode === 'byExercise') { %>
+                    <% } else if (mode === 'exercise') { %>
                         <h1>Muscles related to "<%= title %>"</h1>
                     <% } %>
 
@@ -27,9 +27,9 @@
                         <table cellpadding="5">
                             <thead>
                                 <tr>
-                                    <% if (mode === 'byMuscleName') { %>
+                                    <% if (mode === 'muscle') { %>
                                         <th>Muscle Name</th>
-                                    <% } else if (mode === 'byExercise') { %>
+                                    <% } else if (mode === 'exercise') { %>
                                         <th>Exercise Name</th>
                                         <th>Muscle Name</th>
                                     <% } %>
