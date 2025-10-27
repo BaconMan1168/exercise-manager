@@ -45,8 +45,8 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                    //form validation
+
+                    //form validation needed
 
                     <div class="form-section">
                         <h2 class="form-title">Add Muscle</h2>
@@ -55,6 +55,21 @@
                             <input type="text" name="muscleName" id="createPhrase" required>
 
                             <button>Create Muscle</button>
+                        </form>
+                    </div>
+
+                    //form validation needed
+
+                    <div class="form-section">
+                        <h2 class="form-title">Update Muscle</h2>
+                        <form action="/muscles/update" method="PUT">
+                            <label for="muscleToUpdate">Muscle To Update:</label>
+                            <input type="text" name="currName" id="muscleToUpdate" required>
+
+                            <label for="newMuscleName">New Muscle Name:</label>
+                            <input type="text" name="newName", id="newMuscleName" required>
+
+                            <button>Update Muscle</button>
                         </form>
                     </div>
                 </main>
