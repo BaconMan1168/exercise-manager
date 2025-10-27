@@ -20,8 +20,8 @@
                     <div class="form-section">
                         <h2 class="form-title">Search Muscles</h2>
                         <form action="/muscles/search" method="GET">
-                            <label for="nameSearch">Name:</label>
-                            <input type="text" name="phrase" id="nameSearch" required>
+                            <label for="searchPhrase">Name:</label>
+                            <input type="text" name="phrase" id="searchPhrase" required>
                             
                             <label for="muscleMode">Search by Muscle Name</label>
                             <input type="radio" name="mode" id="muscleMode" value="muscle">
@@ -46,6 +46,17 @@
                         </table>
                     </div>
                     
+                    //form validation
+
+                    <div class="form-section">
+                        <h2 class="form-title">Add Muscle</h2>
+                        <form action="/muscles/add" method="POST">
+                            <label for="createPhrase">Muscle Name:</label>
+                            <input type="text" name="muscleName" id="createPhrase" required>
+
+                            <button>Create Muscle</button>
+                        </form>
+                    </div>
                 </main>
             </div>
         </div>
