@@ -49,8 +49,7 @@ async function emptyMuscles(req, res){
 module.exports = {
     homeMusclePage,
     createMuscle,
-    readMusclesByName,
-    readMusclesByExercise,
+    searchMuscles,
     changeMuscle,
     removeMuscle,
     emptyMuscles

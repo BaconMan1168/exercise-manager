@@ -5,7 +5,6 @@ const muscleRouter = Router();
 
 muscleRouter.get('/', muscleController.homeMusclePage);
 
-muscleRouter.get('/search', muscleController.readMusclesByName);
-muscleRouter.get('/search-by-exercise', muscleController.readMusclesByExercise);
+muscleRouter.get('/search', muscleController.searchMuscles);
 
 module.exports = muscleRouter;

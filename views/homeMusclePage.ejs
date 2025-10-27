@@ -17,6 +17,22 @@
                 </div>
 
                 <main class="muscle-home-main">
+                    <div class="form-section">
+                        <h2 class="form-title">Search Muscles</h2>
+                        <form action="/muscles/search" method="GET">
+                            <label for="nameSearch">Name:</label>
+                            <input type="text" name="phrase" id="nameSearch" required>
+                            
+                            <label for="muscleMode">Search by Muscle Name</label>
+                            <input type="radio" name="mode" id="muscleMode" value="muscle">
+
+                            <label for="exerciseMode">Search by Use in An Exercise</label>
+                            <input type="radio" name="mode" id="exerciseMode" value="exercise">
+
+                            <button>Search</button>
+                        </form>
+                    </div>
+
                     <div style="max-height: 300px; overflow-y: auto;">
                         <table>
                             <thead>
@@ -29,6 +45,7 @@
                             </tbody>
                         </table>
                     </div>
+                    
                 </main>
             </div>
         </div>
