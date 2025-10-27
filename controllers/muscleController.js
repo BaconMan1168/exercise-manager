@@ -11,16 +11,17 @@ async function createMuscle(req, res){
     res.redirect('/muscles')
 }
 
-async function readMusclesByName(req, res){
-    const { musclePhrase } = req.query;
-    const rows = await db.searchMusclesByName(musclePhrase)
-    res.render('search', { mode: 'byMuscleName', title: musclePhrase, rows: rows })
-}
+async function searchMuscles(req, res) {
+  const { mode, phrase } = req.query;
+  let rows = [];
 
-async function readMusclesByExercise(req, res){
-    const { exercisePhrase } = req.query;
-    const rows = await db.searchMusclesByExercise(exercisePhrase);
-    res.render('search', { mode: 'byExercise', title: exercisePhrase, rows: rows })
+  if (mode === 'muscle') {
+    rows = await db.searchMusclesByName(phrase);
+  } else if (mode === 'exercise') {
+    rows = await db.searchMusclesByExercise(phrase);
+  }
+
+  res.render('search', { mode, title: phrase, rows });
 }
 
 async function changeMuscle(req, res){

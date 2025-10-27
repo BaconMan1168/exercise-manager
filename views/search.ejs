@@ -38,14 +38,14 @@
                             <tbody>
                                 <% if (rows.length === 0) { %>
                                     <tr>
-                                        <td colspan="<%= mode === 'byMuscleName' ? 1 : 2 %>">No results found.</td>
+                                        <td colspan="<%= mode === 'muscle' ? 1 : 2 %>">No results found.</td>
                                     </tr>
                                 <% } else { %>
                                     <% rows.forEach(r => { %>
                                         <tr>
-                                            <% if (mode === 'byMuscleName') { %>
+                                            <% if (mode === 'muscle') { %>
                                                 <td><%= r.muscle_group_name %></td>
-                                            <% } else if (mode === 'byExercise') { %>
+                                            <% } else if (mode === 'exercise') { %>
                                                 <td><%= r.exercise_name %></td>
                                                 <td><%= r.muscle_group_name %></td>
                                             <% } %>
