@@ -41,14 +41,16 @@ async function changeExercise(req, res){
 
 async function removeExercise(req, res){
     const { exerciseName } = req.body;
-    const isDeleted = await db.deleteExercise(exerciseName);
+    const existing = await db.searchExercisesByName(exerciseName);
 
-    if (isDeleted){
-        //render something
+    if (existing.length === 0) {
+        return res.status(404).render('errorPage', {
+            message: `Exercise '${exerciseName}' does not exist.`
+        });
     }
-    else{
-        //render something else
-    }
+
+    await db.deleteExercise(exerciseName);
+    res.redirect('/exercises')
 }
 
 async function emptyExercises(req, res){

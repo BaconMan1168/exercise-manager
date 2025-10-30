@@ -88,6 +88,14 @@ async function searchExercisesByName(searchPhrase){
     return rows;
 }
 
+async function searchExerciseByNameExact(exerciseName){
+    const { rows } = await pool.query(
+        "SELECT * FROM exercises WHERE exercise_name = $1",
+        [exerciseName]
+    );
+    return rows;
+}
+
 async function searchMusclesByExercise(searchPhrase){
     const { rows } = await pool.query(`
         SELECT 
@@ -196,6 +204,7 @@ module.exports = {
     clearMuscles,
     clearExercises,
     clearAllTables,
-    searchMuscleByNameExact
+    searchMuscleByNameExact,
+    searchExerciseByNameExact
 }
 

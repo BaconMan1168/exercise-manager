@@ -39,7 +39,7 @@ async function changeMuscle(req, res){
 
 async function removeMuscle(req, res){
     const { muscleName } = req.body;
-    const existing = await db.getMuscleByName(muscleName);
+    const existing = await db.searchMuscleByNameExact(muscleName);
 
     if (existing.length === 0) {
         return res.status(404).render('errorPage', {
