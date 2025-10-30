@@ -16,7 +16,7 @@
                     <%- include('header', { pageName: "Exercise Home Page"}) %>
                 </div>
 
-                <main class="muscle-home-main">
+                <main class="exercise-home-main">
                     <div class="form-section">
                         <h2 class="form-title">Search Exercises</h2>
                         <form action="/muscles/search" method="GET">
@@ -24,10 +24,10 @@
                             <input type="text" name="phrase" id="searchPhrase" required>
                             
                             <label for="nameMode">Search by Exercise Name</label>
-                            <input type="radio" name="mode" id="nameMode" value="exerciseName">
+                            <input type="radio" name="mode" id="nameMode" value="byExerciseName">
 
                             <label for="exerciseMode">Search by Muscles Used in an Exercise</label>
-                            <input type="radio" name="mode" id="exerciseMode" value="musclesUsed">
+                            <input type="radio" name="mode" id="exerciseMode" value="byMusclesUsed">
 
                             <button>Search</button>
                         </form>

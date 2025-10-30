@@ -12,28 +12,26 @@ async function homeExercisePage(req, res){
     res.render('homeExercisePage', { exercises: exercises, links: links })
 }
 
+
+async function searchExercises(req, res) {
+  const { mode, phrase } = req.query;
+  let rows = [];
+
+  if (mode === 'byExerciseName') {
+    rows = await db.searchExercisesByName(phrase);
+  } else if (mode === 'byMusclesUsed') {
+    rows = await db.searchExercisesByMuscle(phrase);
+  }
+
+  res.render('search', { mode, title: phrase, rows });
+}
+
 async function createExercise(req, res){
     const { exerciseName } = req.body;
     await db.addExercise(exerciseName);
     res.redirect('/')
 }
 
-async function readAllExercises(req, res){
-    const exercises = await db.getAllExercises();
-    //render something with ejs
-}
-
-async function readExercisesByName(req, res){
-    const { exercisePhrase } = req.query;
-    const exercises = await db.searchExercisesByName(exercisePhrase);
-    //render something with ejs
-}
-
-async function readExercisesByMuscle(req, res){
-    const { musclePhrase } = req.query;
-    const exercises = await db.searchExercisesByMuscle(musclePhrase);
-    //render something with ejs
-}
 
 async function changeExercise(req, res){
     const { currName, newName } = req.body;
@@ -59,9 +57,8 @@ async function emptyExercises(req, res){
 
 module.exports = {
     createExercise,
-    readAllExercises,
-    readExercisesByName,
-    readExercisesByMuscle,
+    homeExercisePage,
+    searchExercises,
     changeExercise,
     removeExercise,
     emptyExercises
