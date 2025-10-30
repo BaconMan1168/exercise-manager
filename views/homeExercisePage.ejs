@@ -13,21 +13,21 @@
 
             <div class="right-elements">
                 <div class="header">
-                    <%- include('header', { pageName: "Muscle Home Page"}) %>
+                    <%- include('header', { pageName: "Exercise Home Page"}) %>
                 </div>
 
                 <main class="muscle-home-main">
                     <div class="form-section">
-                        <h2 class="form-title">Search Muscles</h2>
+                        <h2 class="form-title">Search Exercises</h2>
                         <form action="/muscles/search" method="GET">
                             <label for="searchPhrase">Name:</label>
                             <input type="text" name="phrase" id="searchPhrase" required>
                             
-                            <label for="muscleMode">Search by Muscle Name</label>
-                            <input type="radio" name="mode" id="muscleMode" value="muscle">
+                            <label for="nameMode">Search by Exercise Name</label>
+                            <input type="radio" name="mode" id="nameMode" value="exerciseName">
 
-                            <label for="exerciseMode">Search by Use in An Exercise</label>
-                            <input type="radio" name="mode" id="exerciseMode" value="exercise">
+                            <label for="exerciseMode">Search by Muscles Used in an Exercise</label>
+                            <input type="radio" name="mode" id="exerciseMode" value="musclesUsed">
 
                             <button>Search</button>
                         </form>
