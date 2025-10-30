@@ -75,6 +75,14 @@ async function searchMusclesByName(searchPhrase){
     return rows;
 }
 
+async function searchMuscleByNameExact(muscleName){
+    const { rows } = await pool.query(
+        "SELECT * FROM muscles WHERE muscle_group_name = $1",
+        [muscleName]
+    );
+    return rows;
+}
+
 async function searchExercisesByName(searchPhrase){
     const { rows } = await pool.query("SELECT exercise_name FROM exercises WHERE exercise_name ILIKE $1 ", ['%' + searchPhrase + '%'])
     return rows;
@@ -142,12 +150,10 @@ async function updateExercise(exerciseName, newExerciseName){
 //DELETE query functions (DELETE)
 
 async function deleteMuscle(muscleName){
-    const { rowCount } = await pool.query(
+    await pool.query(
         "DELETE FROM muscles WHERE muscle_group_name = $1",
         [muscleName]
     )
-
-    return rowCount > 0;
 }
 
 async function deleteExercise(exerciseName){
@@ -189,6 +195,7 @@ module.exports = {
     deleteExercise,
     clearMuscles,
     clearExercises,
-    clearAllTables
+    clearAllTables,
+    searchMuscleByNameExact
 }
 

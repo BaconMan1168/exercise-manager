@@ -27,19 +27,21 @@ async function searchMuscles(req, res) {
 async function changeMuscle(req, res){
     const { currName, newName } = req.body;
     await db.updateMuscle(currName, newName);
-    //render or redirect
+    res.redirect('/muscles')
 }
 
 async function removeMuscle(req, res){
     const { muscleName } = req.body;
-    const isDeleted = await db.deleteMuscle(muscleName);
+    const existing = await db.getMuscleByName(muscleName);
 
-    if (isDeleted){
-        //render something
+    if (existing.length === 0) {
+        return res.status(404).render('errorPage', {
+            message: `Muscle '${muscleName}' does not exist.`
+        });
     }
-    else{
-        //render something else
-    }
+
+    await db.deleteMuscle(muscleName);
+    res.redirect('/muscles')
 }
 
 async function emptyMuscles(req, res){

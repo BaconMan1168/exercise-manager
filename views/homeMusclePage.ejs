@@ -13,7 +13,7 @@
 
             <div class="right-elements">
                 <div class="header">
-                    <%- include('header', { pageName: "Home"}) %>
+                    <%- include('header', { pageName: "Muscle Home Page"}) %>
                 </div>
 
                 <main class="muscle-home-main">
@@ -57,6 +57,19 @@
                             <button>Create Muscle</button>
                         </form>
                     </div>
+
+
+                    //must check if muscle name exists first
+                    <div class="form-section">
+                        <h2 class="form-title">Delete Muscle</h2>
+                        <form action="/muscles/delete" method="DELETE">
+                            <label for="deletePhrase">Muscle Name:</label>
+                            <input type="text" name="muscleName" id="deletePhrase" required>
+
+                            <button>Delete Muscle</button>
+                        </form>
+                    </div>
+                    
 
                     //form validation needed
 
