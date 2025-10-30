@@ -28,7 +28,7 @@ async function searchMuscles(req, res) {
     rows = await db.searchMusclesByExercise(phrase);
   }
 
-  res.render('search', { mode, title: phrase, rows });
+  res.render('searchMuscle', { mode, title: phrase, rows });
 }
 
 async function changeMuscle(req, res){
