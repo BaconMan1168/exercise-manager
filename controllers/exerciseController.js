@@ -23,7 +23,7 @@ async function searchExercises(req, res) {
     rows = await db.searchExercisesByMuscle(phrase);
   }
 
-  res.render('search', { mode, title: phrase, rows });
+  res.render('searchExercise', { mode, title: phrase, rows, links: links });
 }
 
 async function createExercise(req, res){
