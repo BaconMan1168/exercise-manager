@@ -1,5 +1,17 @@
 const db = require('../models/queries')
 
+const links = [
+  { href: "/", text: "Home" },
+  { href: "/muscles", text: "Muscle Database" },
+  { href: "/exercises", text: "Exercise Database" },
+  { href: "/exercisemusclegroup", text: "Muscles Targeted Database" }
+];
+
+async function homeExercisePage(req, res){
+    const exercises = await db.getAllExercises();
+    res.render('homeExercisePage', { exercises: exercises, links: links })
+}
+
 async function createExercise(req, res){
     const { exerciseName } = req.body;
     await db.addExercise(exerciseName);
