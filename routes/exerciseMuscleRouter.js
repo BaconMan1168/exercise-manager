@@ -8,4 +8,4 @@ exerciseMuscleController.get('/', exerciseMuscleController.homeExerciseMusclePai
 exerciseRouter.post('/add', exerciseMuscleController.createExerciseMusclePair);
 
 
-module.exports = muscleRouter;
+module.exports = pairsRouter;
