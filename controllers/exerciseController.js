@@ -53,9 +53,7 @@ async function removeExercise(req, res){
     res.redirect('/exercises')
 }
 
-async function emptyExercises(req, res){
-    await db.clearExercises();
-}
+
 
 module.exports = {
     createExercise,
@@ -63,5 +61,4 @@ module.exports = {
     searchExercises,
     changeExercise,
     removeExercise,
-    emptyExercises
 }

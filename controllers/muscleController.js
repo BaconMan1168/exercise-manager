@@ -51,9 +51,7 @@ async function removeMuscle(req, res){
     res.redirect('/muscles')
 }
 
-async function emptyMuscles(req, res){
-    await db.clearMuscles();
-}
+
 
 module.exports = {
     homeMusclePage,
@@ -61,5 +59,4 @@ module.exports = {
     searchMuscles,
     changeMuscle,
     removeMuscle,
-    emptyMuscles
 }

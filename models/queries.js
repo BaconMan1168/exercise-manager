@@ -173,18 +173,6 @@ async function deleteExercise(exerciseName){
     return rowCount > 0;
 }
 
-async function clearMuscles(){
-    await pool.query("TRUNCATE TABLE muscles")
-}
-
-async function clearExercises(){
-    await pool.query("TRUNCATE TABLE exercises")
-}
-
-async function clearAllTables(){
-    await clearMuscles();
-    await clearExercises();
-}
 
 module.exports = {
     addMuscle,
@@ -201,9 +189,6 @@ module.exports = {
     updateExercise,
     deleteMuscle,
     deleteExercise,
-    clearMuscles,
-    clearExercises,
-    clearAllTables,
     searchMuscleByNameExact,
     searchExerciseByNameExact
 }
