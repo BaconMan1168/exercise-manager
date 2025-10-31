@@ -17,7 +17,7 @@ async function createExerciseMusclePair(req, res){
     }
     catch (err) {
         return res.status(404).render('errorPage', {
-            message: `Exercise-Muscle pair does not exist.`
+            message: err.message
         });
     }
 
