@@ -36,7 +36,7 @@ async function createExercise(req, res){
 async function changeExercise(req, res){
     const { currName, newName } = req.body;
     await db.updateExercise(currName, newName);
-    //render or redirect
+    res.redirect('/exercises')
 }
 
 async function removeExercise(req, res){
