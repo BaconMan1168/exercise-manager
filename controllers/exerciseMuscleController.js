@@ -46,5 +46,6 @@ async function removeExerciseMusclePair(req, res){
 
 module.exports = {
     createExerciseMusclePair,
-    homeExerciseMusclePairsPage
+    homeExerciseMusclePairsPage,
+    removeExerciseMusclePair
 }
