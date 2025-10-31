@@ -4,8 +4,9 @@ const links = [
   { href: "/", text: "Home" },
   { href: "/muscles", text: "Muscle Database" },
   { href: "/exercises", text: "Exercise Database" },
-  { href: "/exercisemusclegroup", text: "Muscles Targeted Database" }
+  { href: "/pairs", text: "Muscles Targeted Database" }
 ];
+
 
 async function homeMusclePage(req, res){
     const muscles = await db.getAllMuscles();

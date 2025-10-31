@@ -3,8 +3,7 @@ const exerciseMuscleController = require('../controllers/exerciseMuscleControlle
 
 const pairsRouter = Router();
 
-exerciseMuscleController.get('/', exerciseMuscleController.homeExerciseMusclePairsPage);
-
+pairsRouter.get('/', exerciseMuscleController.homeExerciseMusclePairsPage);
 pairsRouter.post('/add', exerciseMuscleController.createExerciseMusclePair);
 pairsRouter.delete('/delete', exerciseMuscleController.removeExerciseMusclePair);
 

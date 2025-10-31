@@ -1,10 +1,10 @@
-const db = require('../db/queries');
+const db = require('../models/queries');
 
 const links = [
   { href: "/", text: "Home" },
   { href: "/muscles", text: "Muscle Database" },
   { href: "/exercises", text: "Exercise Database" },
-  { href: "/exercisemusclegroup", text: "Muscles Targeted Database" }
+  { href: "/pairs", text: "Muscles Targeted Database" }
 ];
 
 async function homePage(req, res) {
