@@ -5,7 +5,7 @@ const pairsRouter = Router();
 
 exerciseMuscleController.get('/', exerciseMuscleController.homeExerciseMusclePairsPage);
 
-exerciseRouter.post('/add', exerciseMuscleController.createExerciseMusclePair);
-exerciseRouter.delete('/delete', exerciseMuscleController.removeExerciseMusclePair);
+pairsRouter.post('/add', exerciseMuscleController.createExerciseMusclePair);
+pairsRouter.delete('/delete', exerciseMuscleController.removeExerciseMusclePair);
 
 module.exports = pairsRouter;
