@@ -9,9 +9,19 @@ const links = [
 
 
 async function createExerciseMusclePair(req, res){
-    const { exerciseName, muscleName } = req.body;
-    await db.addExerciseMusclePair(exerciseName, muscleName);
-    res.redirect('/')
+    try {
+        const { exerciseName, musclesUsed } = req.body;
+        const muscles = musclesUsed.split(' ').filter(m => m.trim() !== '');
+        await db.addExerciseMusclePair(exerciseName, muscles);
+        res.redirect('/pairs')
+    }
+    catch (err) {
+        return res.status(404).render('errorPage', {
+            message: `Muscle '${muscleName}' does not exist.`
+        });
+    }
+
+
 }
 
 async function homeExerciseMusclePairsPage(req, res){

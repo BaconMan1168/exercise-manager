@@ -28,7 +28,7 @@
                             <tbody>
                             <% pairs.forEach(p => { %>
                                 <tr>
-                                    <td><%= p.Exercise_name %></td>
+                                    <td><%= p.Exercise_Name %></td>
                                     <td><%= p.Trained_Muscles %></td>
                                 </tr>
                             <% }) %>
@@ -36,15 +36,18 @@
                         </table>
                     </div>
 
-                    //form validation needed
+                    //form validation needed (must be single space seperated)
 
                     <div class="form-section">
-                        <h2 class="form-title">Add Muscle</h2>
-                        <form action="/muscles/add" method="POST">
-                            <label for="createPhrase">Muscle Name:</label>
-                            <input type="text" name="muscleName" id="createPhrase" required>
+                        <h2 class="form-title">Add Exercise-Muscle Pair</h2>
+                        <form action="/pairs/add" method="POST">
+                            <label for="createPhrase">Exercise Name:</label>
+                            <input type="text" name="exerciseName" id="createPhrase" required>
 
-                            <button>Create Muscle</button>
+                            <label for="musclesUsed">Muscles Used (single space seperated, no commas)</label>
+                            <input type="text" name="musclesUsed" id="musclesUsed" required>
+
+                            <button>Create Pair</button>
                         </form>
                     </div>
                 </main>
