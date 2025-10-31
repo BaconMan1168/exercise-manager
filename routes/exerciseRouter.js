@@ -8,5 +8,4 @@ exerciseRouter.get('/', exerciseController.homeExercisePage);
 exerciseRouter.get('/search', exerciseController.searchExercises);
 exerciseRouter.post('/add', exerciseController.createExercise);
 
-
 module.exports = muscleRouter;

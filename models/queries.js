@@ -58,8 +58,8 @@ async function getAllExercises(){
 async function getAllExerciseMusclePairs(){
     const SQL = `
     SELECT 
-        e.exercise_name AS "Exercise Name",
-        STRING_AGG(m.muscle_group_name, ', ') AS "Trained Muscles"
+        e.exercise_name AS "Exercise_Name",
+        STRING_AGG(m.muscle_group_name, ', ') AS "Trained_Muscles"
     FROM exercise_muscle_group emg
     INNER JOIN muscles m ON emg.muscle_id = m.id
     INNER JOIN exercises e ON emg.exercise_id = e.id
