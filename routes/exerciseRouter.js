@@ -7,5 +7,7 @@ exerciseRouter.get('/', exerciseController.homeExercisePage);
 
 exerciseRouter.get('/search', exerciseController.searchExercises);
 exerciseRouter.post('/add', exerciseController.createExercise);
+exerciseRouter.put('/update', exerciseController.changeExercise);
+exerciseRouter.delete('/delete', exerciseController.removeExercise);
 
 module.exports = muscleRouter;
