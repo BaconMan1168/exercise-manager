@@ -30,6 +30,20 @@ async function homeExerciseMusclePairsPage(req, res){
 
 }
 
+async function removeExerciseMusclePair(req, res){
+    const { exerciseToDelete, muscleToDelete } = req.body;
+    const existing = await db.searchExerciseMusclePair(exerciseToDelete, muscleToDelete);
+
+    if (!existing) {
+        return res.status(404).render('errorPage', {
+            message: `Exercise-Muscle pair does not exist.`
+        });
+    }
+
+    await db.deletePair(exerciseToDelete, muscleToDelete);
+    res.redirect('/pairs')
+}
+
 module.exports = {
     createExerciseMusclePair,
     homeExerciseMusclePairsPage

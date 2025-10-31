@@ -120,6 +120,17 @@ async function searchExercisesByMuscle(searchPhrase){
     return rows;
 }
 
+async function searchExerciseMusclePair(exerciseName, muscleName){
+    const { rows: existing } = await pool.query(`
+        SELECT 1 FROM exercise_muscle_group
+        WHERE exercise_id = (SELECT id FROM exercises WHERE exercise_name = $1)
+        AND muscle_id = (SELECT id FROM muscles WHERE muscle_group_name = $2)
+        `,
+        [exerciseName, muscleName]
+    )
+    return existing.length > 0;
+}
+
 //UPDATE query functions (PUT)
 
 async function updateMuscle(muscleName, newMuscleName){
@@ -165,12 +176,20 @@ async function deleteMuscle(muscleName){
 }
 
 async function deleteExercise(exerciseName){
-    const { rowCount } = await pool.query(
+    await pool.query(
         "DELETE from exercises WHERE exercise_name = $1",
         [exerciseName]
     )
+}
 
-    return rowCount > 0;
+async function deletePair(exerciseName, muscleName){
+    await pool.query(
+            `DELETE from exercise_muscle_group
+            WHERE exercise_id = (SELECT id FROM exercises WHERE exercise_name = $1)
+            AND muscle_id = (SELECT id FROM muscles WHERE muscle_group_name = $2)
+            `,
+            [exerciseName, muscleName]
+    )
 }
 
 
@@ -190,6 +209,8 @@ module.exports = {
     deleteMuscle,
     deleteExercise,
     searchMuscleByNameExact,
-    searchExerciseByNameExact
+    searchExerciseByNameExact,
+    deletePair,
+    searchExerciseMusclePair
 }
 
