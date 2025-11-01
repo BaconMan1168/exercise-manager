@@ -46,12 +46,12 @@ async function addExerciseMusclePair(exerciseName, muscleNames){
 
 //READ query functions (GET)
 async function getAllMuscles(){
-    const { rows } = await pool.query(`SELECT muscle_group_name AS "Muscle Name" FROM muscles;`);
+    const { rows } = await pool.query(`SELECT muscle_group_name FROM muscles;`);
     return rows;
 } 
 
 async function getAllExercises(){
-    const { rows } = await pool.query(`SELECT exercise_name AS "Exercise Name" FROM exercises`);
+    const { rows } = await pool.query(`SELECT exercise_name FROM exercises`);
     return rows;
 }
 
@@ -99,7 +99,7 @@ async function searchExerciseByNameExact(exerciseName){
 async function searchMusclesByExercise(searchPhrase){
     const { rows } = await pool.query(`
         SELECT 
-            e.exercise_name AS "Exercise Name", m.muscle_group_name AS "Muscles Trained"
+            e.exercise_name, m.muscle_group_name
         FROM exercise_muscle_group emg
         INNER JOIN muscles m ON emg.muscle_id = m.id
         INNER JOIN exercises e ON emg.exercise_id = e.id 
@@ -111,7 +111,7 @@ async function searchMusclesByExercise(searchPhrase){
 async function searchExercisesByMuscle(searchPhrase){
     const { rows } = await pool.query(`
         SELECT 
-            e.exercise_name AS "Exercises"
+            e.exercise_name
         FROM exercise_muscle_group emg
         INNER JOIN muscles m ON emg.muscle_id = m.id
         INNER JOIN exercises e ON emg.exercise_id = e.id 
