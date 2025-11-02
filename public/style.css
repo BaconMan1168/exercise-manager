@@ -9,8 +9,8 @@
 }
 
 .navbar{
-    display:grid;
-    grid: repeat(4, 50px) / 200px;
+    background-color:#6d4f3e;
+    height:100vh;
 }
 
 .navbar div{
@@ -36,4 +36,16 @@ img + a{
 .right-elements {
     display: flex;
     flex-direction: column;
+}
+
+.header{
+    background-color: #1e1b19;
+    color:#c0b3a5;
+    width:100vw;
+    padding:20px;
+    box-shadow: 0 15px 12px rgba(0,0,0,0.5);
+}
+
+body {
+    background-color: #f0ebe7;
 }
