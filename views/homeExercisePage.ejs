@@ -80,7 +80,7 @@
             <!-- Delete -->
             <div class="form-section">
               <h2 class="form-title">Delete Exercise</h2>
-              <form action="/exercises/delete" method="POST">
+              <form action="/exercises/delete?_method=DELETE" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
                 <label for="deletePhrase">Exercise Name:</label>
                 <input type="text" name="exerciseName" id="deletePhrase" required>
@@ -91,7 +91,7 @@
             <!-- Update -->
             <div class="form-section">
               <h2 class="form-title">Update Exercise</h2>
-              <form action="/exercises/update" method="POST">
+              <form action="/exercises/update?_method=PUT" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <label for="exerciseToUpdate">Exercise To Update:</label>
                 <input type="text" name="currName" id="exerciseToUpdate" required>
