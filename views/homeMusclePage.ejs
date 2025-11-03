@@ -1,94 +1,107 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Muscle Home Page</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="navbar left-elements">
-                <%- include('navbar', { links: links }) %>
-            </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muscle Home Page</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="navbar left-elements">
+      <%- include('navbar', { links: links }) %>
+    </div>
 
-            <div class="right-elements">
-                <div class="header">
-                    <%- include('header', { pageName: "Muscle Home Page"}) %>
+    <!-- Main Section -->
+    <div class="right-elements">
+      <div class="header">
+        <%- include('header', { pageName: "Muscle Home Page" }) %>
+      </div>
+
+      <main class="muscle-home-main">
+
+        <!-- Two-column layout for forms and table -->
+        <div class="muscle-layout">
+
+          <!-- Left side: Search + table -->
+          <div class="muscle-left">
+            <div class="form-section">
+              <h2 class="form-title">Search Muscles</h2>
+              <form action="/muscles/search" method="GET">
+                <label for="searchPhrase">Name:</label>
+                <input type="text" name="phrase" id="searchPhrase" required>
+
+                <div class="radio-group">
+                  <label for="muscleMode">
+                    <input type="radio" name="mode" id="muscleMode" value="muscle" checked> Search by Muscle Name
+                  </label>
+
+                  <label for="exerciseMode">
+                    <input type="radio" name="mode" id="exerciseMode" value="exercise"> Search by Use in An Exercise
+                  </label>
                 </div>
 
-                <main class="muscle-home-main">
-                    <div class="form-section">
-                        <h2 class="form-title">Search Muscles</h2>
-                        <form action="/muscles/search" method="GET">
-                            <label for="searchPhrase">Name:</label>
-                            <input type="text" name="phrase" id="searchPhrase" required>
-                            
-                            <label for="muscleMode">Search by Muscle Name</label>
-                            <input type="radio" name="mode" id="muscleMode" value="muscle">
-
-                            <label for="exerciseMode">Search by Use in An Exercise</label>
-                            <input type="radio" name="mode" id="exerciseMode" value="exercise">
-
-                            <button>Search</button>
-                        </form>
-                    </div>
-
-                    <div style="max-height: 300px; overflow-y: auto;">
-                        <table>
-                            <thead>
-                            <tr><th>Muscle Name</th></tr>
-                            </thead>
-                            <tbody>
-                            <% muscles.forEach(m => { %>
-                                <tr><td><%= m.muscle_group_name %></td></tr>
-                            <% }) %>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    //form validation needed
-
-                    <div class="form-section">
-                        <h2 class="form-title">Add Muscle</h2>
-                        <form action="/muscles/add" method="POST">
-                            <label for="createPhrase">Muscle Name:</label>
-                            <input type="text" name="muscleName" id="createPhrase" required>
-
-                            <button>Create Muscle</button>
-                        </form>
-                    </div>
-
-
-                    //must check if muscle name exists first
-                    <div class="form-section">
-                        <h2 class="form-title">Delete Muscle</h2>
-                        <form action="/muscles/delete" method="DELETE">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <label for="deletePhrase">Muscle Name:</label>
-                            <input type="text" name="muscleName" id="deletePhrase" required>
-
-                            <button>Delete Muscle</button>
-                        </form>
-                    </div>
-                    
-
-                    //form validation needed
-
-                    <div class="form-section">
-                        <h2 class="form-title">Update Muscle</h2>
-                        <form action="/muscles/update" method="PUT">
-                            <input type="hidden" name="_method" value="PUT">
-                            <label for="muscleToUpdate">Muscle To Update:</label>
-                            <input type="text" name="currName" id="muscleToUpdate" required>
-
-                            <label for="newMuscleName">New Muscle Name:</label>
-                            <input type="text" name="newName", id="newMuscleName" required>
-
-                            <button>Update Muscle</button>
-                        </form>
-                    </div>
-                </main>
+                <button>Search</button>
+              </form>
             </div>
+
+            <div class="form-section">
+              <h2 class="form-title">Muscle List</h2>
+              <div class="table-container" style="max-height: 300px; overflow-y: auto;">
+                <table>
+                  <thead>
+                    <tr><th>Muscle Name</th></tr>
+                  </thead>
+                  <tbody>
+                    <% muscles.forEach(m => { %>
+                      <tr><td><%= m.muscle_group_name %></td></tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: Add, Delete, Update -->
+          <div class="muscle-right">
+            <div class="form-section">
+              <h2 class="form-title">Add Muscle</h2>
+              <form action="/muscles/add" method="POST">
+                <label for="createPhrase">Muscle Name:</label>
+                <input type="text" name="muscleName" id="createPhrase" required>
+                <button>Create Muscle</button>
+              </form>
+            </div>
+
+            <div class="form-section">
+              <h2 class="form-title">Delete Muscle</h2>
+              <form action="/muscles/delete" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <label for="deletePhrase">Muscle Name:</label>
+                <input type="text" name="muscleName" id="deletePhrase" required>
+                <button>Delete Muscle</button>
+              </form>
+            </div>
+
+            <div class="form-section">
+              <h2 class="form-title">Update Muscle</h2>
+              <form action="/muscles/update" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <label for="muscleToUpdate">Muscle To Update:</label>
+                <input type="text" name="currName" id="muscleToUpdate" required>
+
+                <label for="newMuscleName">New Muscle Name:</label>
+                <input type="text" name="newName" id="newMuscleName" required>
+
+                <button>Update Muscle</button>
+              </form>
+            </div>
+          </div>
+
         </div>
-    </body>
+      </main>
+    </div>
+  </div>
+</body>
 </html>
