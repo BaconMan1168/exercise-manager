@@ -91,7 +91,8 @@ body {
 
 /* home muscle main section */
 
-.muscle-home-main {
+.muscle-home-main,
+.exercise-home-main {
     padding: 1.25rem;
 }
 
@@ -108,7 +109,6 @@ body {
   gap: 1.5rem;
 }
 
-/* Basic card look */
 .form-section {
   background: #fff;
   border-radius: 10px;
@@ -116,14 +116,13 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Headings */
 .form-title {
   margin-bottom: 1rem;
   font-size: 1.2rem;
   color: #3b2f2f;
 }
 
-/* Form fields */
+
 form {
   display: flex;
   flex-direction: column;
@@ -149,7 +148,6 @@ button:hover {
   background: #5a4230;
 }
 
-/* Table */
 .table-container table {
   width: 100%;
   border-collapse: collapse;
@@ -161,3 +159,20 @@ button:hover {
   padding: 0.5rem;
   text-align: left;
 }
+
+/* home-exercise-page */
+
+.exercise-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.exercise-left,
+.exercise-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
