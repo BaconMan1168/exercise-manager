@@ -75,13 +75,14 @@ body {
 }
 
 .card {
-    background-color: #fdfaf7f5;
+    background-color: #fff;
     margin:12px;
     padding:20px;
     width:75%;
     height:16em;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     transition: 0.4s;
+    border-radius:10px;
     cursor: pointer;
 }
 
@@ -109,7 +110,8 @@ body {
   gap: 1.5rem;
 }
 
-.form-section {
+.form-section,
+.table-container {
   background: #fff;
   border-radius: 10px;
   padding: 0.75rem;
@@ -171,6 +173,27 @@ button:hover {
 
 .exercise-left,
 .exercise-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* home-exercise-pair-page */
+
+
+.exercise-pair-main {
+  padding: 1.25rem;
+}
+
+.exercise-pair-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.exercise-pair-left,
+.exercise-pair-right {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
