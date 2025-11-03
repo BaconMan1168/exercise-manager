@@ -76,8 +76,7 @@
 
             <div class="form-section">
               <h2 class="form-title">Delete Muscle</h2>
-              <form action="/muscles/delete" method="POST">
-                <input type="hidden" name="_method" value="DELETE">
+              <form action="/muscles/delete?_method=DELETE" method="POST">
                 <label for="deletePhrase">Muscle Name:</label>
                 <input type="text" name="muscleName" id="deletePhrase" required>
                 <button>Delete Muscle</button>
@@ -86,8 +85,7 @@
 
             <div class="form-section">
               <h2 class="form-title">Update Muscle</h2>
-              <form action="/muscles/update" method="POST">
-                <input type="hidden" name="_method" value="PUT">
+              <form action="/muscles/update?_method=PUT" method="POST">
                 <label for="muscleToUpdate">Muscle To Update:</label>
                 <input type="text" name="currName" id="muscleToUpdate" required>
 
