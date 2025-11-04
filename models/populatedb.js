@@ -1,4 +1,7 @@
 const { Client } = require('pg');
+const { argv } = require('node:process')
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 const createTables = `
 CREATE TABLE IF NOT EXISTS muscles (
@@ -45,9 +48,13 @@ VALUES
 async function main() {
   console.log("seeding...");
 
-  //add if else statement when implementing a remote database
+  const connectionString = argv[2] || process.env.DATABASE_URL || `postgresql://${process.env.LOCAL_DB_USER}:${process.env.LOCAL_DB_PASSWORD}@${process.env.LOCAL_DB_HOST}:${process.env.LOCAL_DB_PORT}/${process.env.LOCAL_DB_NAME}`;
+  
   const client = new Client({
-    connectionString: "postgresql://danielguirao:baconater@localhost:5432/exercise_inventory",
+    connectionString,
+    ssl: connectionString.includes('render.com')
+      ? { rejectUnauthorized: false }
+      : false
   });
   await client.connect();
   await client.query(createTables);
