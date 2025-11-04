@@ -1,62 +1,97 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Search Results</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="navbar left-elements">
-                <%- include('navbar', { links: links }) %>
-            </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="navbar left-elements">
+      <%- include('navbar', { links: links }) %>
+    </div>
 
-            <div class="right-elements">
-                <div class="header">
-                    <%- include('header', { pageName: "Muscle Search"}) %>
+    <!-- Right section -->
+    <div class="right-elements">
+      <div class="header">
+        <%- include('header', { pageName: "Muscle Search" }) %>
+      </div>
+
+      <main class="muscle-search-main">
+        <div class="muscle-search-layout">
+          
+          <!-- Left column: Table -->
+          <div class="muscle-search-left">
+            <% if (mode === 'muscle') { %>
+              <h1>Muscles with "<%= title %>"</h1>
+            <% } else if (mode === 'exercise') { %>
+              <h1>Muscles related to "<%= title %>"</h1>
+            <% } %>
+
+            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
+              <table cellpadding="5">
+                <thead>
+                  <tr>
+                    <% if (mode === 'muscle') { %>
+                      <th>Muscle Name</th>
+                    <% } else if (mode === 'exercise') { %>
+                      <th>Exercise Name</th>
+                      <th>Muscle Name</th>
+                    <% } %>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (rows.length === 0) { %>
+                    <tr>
+                      <td colspan="<%= mode === 'muscle' ? 1 : 2 %>">No results found.</td>
+                    </tr>
+                  <% } else { %>
+                    <% rows.forEach(r => { %>
+                      <tr>
+                        <% if (mode === 'muscle') { %>
+                          <td><%= r.muscle_group_name %></td>
+                        <% } else if (mode === 'exercise') { %>
+                          <td><%= r.exercise_name %></td>
+                          <td><%= r.muscle_group_name %></td>
+                        <% } %>
+                      </tr>
+                    <% }) %>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right column: Search form -->
+          <div class="muscle-search-right">
+            <div class="form-section">
+              <h2 class="form-title">Search Again</h2>
+              <form action="/muscles/search" method="GET">
+                <label for="searchPhrase">Name:</label>
+                <input type="text" name="phrase" id="searchPhrase" required>
+
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="mode" value="muscle" <%= mode==='muscle'?'checked':'' %>>
+                    Search by Muscle Name
+                  </label>
+
+                  <label>
+                    <input type="radio" name="mode" value="exercise" <%= mode==='exercise'?'checked':'' %>>
+                    Search by Exercise
+                  </label>
                 </div>
 
-                <main class="muscle-search-main">
-                    <% if (mode === 'muscle') { %>
-                        <h1>Muscles with "<%= title %>"</h1>
-                    <% } else if (mode === 'exercise') { %>
-                        <h1>Muscles related to "<%= title %>"</h1>
-                    <% } %>
-
-                    <div style="max-height: 300px; overflow-y: auto;">
-                        <table cellpadding="5">
-                            <thead>
-                                <tr>
-                                    <% if (mode === 'muscle') { %>
-                                        <th>Muscle Name</th>
-                                    <% } else if (mode === 'exercise') { %>
-                                        <th>Exercise Name</th>
-                                        <th>Muscle Name</th>
-                                    <% } %>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if (rows.length === 0) { %>
-                                    <tr>
-                                        <td colspan="<%= mode === 'muscle' ? 1 : 2 %>">No results found.</td>
-                                    </tr>
-                                <% } else { %>
-                                    <% rows.forEach(r => { %>
-                                        <tr>
-                                            <% if (mode === 'muscle') { %>
-                                                <td><%= r.muscle_group_name %></td>
-                                            <% } else if (mode === 'exercise') { %>
-                                                <td><%= r.exercise_name %></td>
-                                                <td><%= r.muscle_group_name %></td>
-                                            <% } %>
-                                        </tr>
-                                    <% }) %>
-                                <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-                </main>
+                <button>Search</button>
+              </form>
             </div>
+          </div>
+
         </div>
-    </body>
+      </main>
+    </div>
+  </div>
+</body>
 </html>

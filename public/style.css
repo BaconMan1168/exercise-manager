@@ -93,7 +93,10 @@ body {
 /* home muscle main section */
 
 .muscle-home-main,
-.exercise-home-main {
+.exercise-home-main,
+.exercise-pair-main,
+.muscle-search-main,
+.exercise-search-main {
     padding: 1.25rem;
 }
 
@@ -178,9 +181,9 @@ button:hover {
   gap: 1.5rem;
 }
 
-/* home-exercise-pair-page */
 
 
+/* exercise-pair-page layout */
 .exercise-pair-main {
   padding: 1.25rem;
 }
@@ -198,4 +201,45 @@ button:hover {
   flex-direction: column;
   gap: 1.5rem;
 }
+
+/* search layout */
+
+.muscle-search-layout,
+.exercise-search-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.search-table-container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.search-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.search-table-container th,
+.search-table-container td {
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.muscle-search-left h1,
+.exercise-search-left h1 {
+  font-size: 1.3rem;
+  color: #3b2f2f;
+  margin-bottom: 0.5rem;
+}
+
+
+
 
