@@ -48,7 +48,7 @@ VALUES
 async function main() {
   console.log("seeding...");
 
-  const connectionString = argv[2] || process.env.REMOTE_DATABASE_URL || `postgresql://${process.env.LOCAL_DB_USER}:${process.env.LOCAL_DB_PASSWORD}@${process.env.LOCAL_DB_HOST}:${process.env.LOCAL_DB_PORT}/${process.env.LOCAL_DB_NAME}`;
+  const connectionString = argv[2] || process.env.REMOTE_DB_URL || `postgresql://${process.env.LOCAL_DB_USER}:${process.env.LOCAL_DB_PASSWORD}@${process.env.LOCAL_DB_HOST}:${process.env.LOCAL_DB_PORT}/${process.env.LOCAL_DB_NAME}`;
   
   const client = new Client({
     connectionString,
